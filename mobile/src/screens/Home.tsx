@@ -3,8 +3,8 @@ import { generateRangeDatesFromYearStart } from '../utils/generate-range-between
 
 import { HabitDay, DAY_SIZE } from "../components/HabitDay";
 import { Header } from "../components/Header";
-import { useNavigation } from "@react-navigation/native";
-import { useEffect, useState } from "react";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import { useCallback, useState } from "react";
 import { api } from "../lib/axios";
 import { Loading } from "../components/Loading";
 import dayjs from "dayjs";
@@ -41,9 +41,9 @@ export function Home() {
     }
   }
 
-  useEffect(() => {
+  useFocusEffect(useCallback(() => {
     fetchData()
-  }, [])
+  }, []))
 
   if (loading) {
     return (
